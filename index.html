@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio • RETHEESH KD</title>
+  <meta name="description" content="Personal portfolio of Your Name – projects, skills, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --brand: #7c3aed;
+      --brand-2: #06b6d4;
+      --ring: rgba(124,58,237,0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,.25), transparent 60%),
+                  radial-gradient(800px 500px at 100% 0%, rgba(6,182,212,.2), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .nav {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(11,16,32,0.85), rgba(11,16,32,0.4));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav .wrap { max-width: 1100px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 18px; }
+    .logo { font-weight: 800; letter-spacing: .5px; }
+    .logo span { background: linear-gradient(45deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .spacer { flex: 1; }
+    .nav a { color: var(--text); text-decoration: none; opacity: .8; font-weight: 500; margin: 0 8px; }
+    .nav a:hover { opacity: 1; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 100px; border: 1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); box-shadow: var(--shadow); color: var(--text); text-decoration: none; }
+    .btn:hover { border-color: rgba(255,255,255,.25); }
+
+    /* Hero */
+    .hero { max-width: 1100px; margin: 32px auto 0; padding: 36px 20px 20px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; align-items: center; }
+    .hero-card { background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 50px; box-shadow: var(--shadow); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 17px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); opacity:.9; }
+    .hero h1 { font-size: clamp(28px, 4.3vw, 52px); margin: 14px 0 10px; line-height: 1.1; }
+    .hero p { color: var(--muted); font-size: 16px; margin: 0 0 20px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .avatar-card { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,.1); box-shadow: var(--shadow); min-height: 380px; }
+    .avatar {
+      position: absolute; inset: 0; background:
+        radial-gradient(600px 300px at 50% 0%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(400px 300px at 90% 80%, rgba(6,182,212,.25), transparent 50%),
+        url('file:///C:/Users/retheesh%20KD/Downloads/IMG_20241005_161452_444%20(1).jpg') center/cover no-repeat; filter: saturate(1.1);
+    }
+
+    /* Sections */
+    section { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+    .section-title { font-size: 24px; margin: 0 0 18px; letter-spacing: .3px; }
+    .grid { display: grid; gap: 18px; }
+
+    /* Cards */
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+
+    /* Skills */
+    .skills { grid-template-columns: repeat(3, 1fr); }
+    .chip { display:inline-flex; align-items:center; gap:9px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); margin:6px; font-size:14px; }
+
+    /* Projects */
+    .projects { grid-template-columns: repeat(3, 1fr); }
+    .project { overflow: hidden; display:flex; flex-direction: column; }
+    .thumb { border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; border:1px solid rgba(255,255,255,.1); }
+    .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .project h3 { margin:12px 0 6px; font-size:18px; }
+    .project p { color: var(--muted); margin: 0 0 10px; font-size: 14px; }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
+    .tag { font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.16); opacity:.9; }
+
+    /* Experience */
+    .timeline { border-left: 2px dashed rgba(255,255,255,.2); margin-left: 12px; padding-left: 18px; }
+    .t-item { margin: 12px 0 20px; }
+    .t-item h4 { margin: 0; }
+    .t-item small { color: var(--muted); }
+
+    /* Contact */
+    .contact-grid { grid-template-columns: 1.2fr .8fr; align-items: start; }
+    .input { width: 100%; padding: 12px 14px; border-radius: 12px; border:1px solid rgba(255,255,255,.15); background: rgba(10,14,30,.6); color: var(--text); outline: none; }
+    .input:focus { border-color: var(--ring); box-shadow: 0 0 0 4px rgba(124,58,237,.15); }
+    textarea.input { min-height: 140px; resize: vertical; }
+
+    /* Footer */
+    footer { text-align:center; padding: 40px 20px; color: var(--muted); }
+
+    /* Utilities */
+    .row { display:flex; gap:10px; flex-wrap:wrap; }
+    .hidden { display:none; }
+    .sr { opacity: 0; transform: translateY(10px); transition: all .6s ease; }
+    .sr.revealed { opacity: 1; transform: none; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .projects { grid-template-columns: repeat(2, 1fr); }
+      .skills { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .projects { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+      .nav .wrap { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <div class="logo">&lt;<span>Portfolio</span>&gt;</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Area of Intrest</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="spacer"></div>
+      <a class="btn" href="#contact" aria-label="Hire me">🚀 Hire me</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-card sr">
+        <span class="badge">👋 Hey, I'm K D RETHEESH</span>
+        <h1>Web Developer and designer.</h1>
+        <p>As a passionate Web Development and UI/UX design student, I aim to strengthen my expertise in front-end and back-end. I'm eager to learn emerging technologies,collaborate with dynamic teams.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="Resume039.pdf" download>⬇️ RESUME</a>
+        </div>
+      </div>
+      <div class="avatar-card sr">
+        <img src="IMG_20241005_161452_444 (1)"  class="avatar"></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="sr">
+      <h2 class="section-title">About</h2>
+      <div class="card">
+        <p>I'm a developer focused on creating performant, inclusive interfaces. My process blends UX thinking with engineering discipline: plan, prototype, build, iterate. When I'm not coding, you'll find me sketching UI ideas or reading about design systems.</p>
+        <div class="row" style="margin-top:8px">
+          <span class="chip">📍 India (IST)</span>
+          <span class="chip">💼 Open to work</span>
+          <span class="chip">🛠️ Web Development</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="sr">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid skills">
+        
+        </div>
+        <div class="card">
+          <h3>Frontend</h3>
+          <div>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">React</span>
+          
+          </div>
+        </div>
+        <div class="card">
+          <h3>Tools</h3>
+          <div>
+            <span class="chip">Git & GitHub</span>
+            <span class="chip">Figma</span>
+            <span class="chip">Photoshop</span>
+            <span class="chip">GIMP Tool</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Backend & DB</h3>
+          <div>
+            <span class="chip">Node.js</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">MongoDB</span>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="sr">
+      <div class="row" style="align-items:center; justify-content:space-between;">
+        <h2 class="section-title" style="margin:0">Projects</h2>
+        
+      </div>
+      <div class="grid projects" id="projectGrid">
+        <!-- Project Card 1 -->
+        <article class="card project" data-tags="react dashboard charts">
+          <div class="thumb">
+            <img alt="Full Stack " src="file:///C:/Users/retheesh%20KD/OneDrive/Desktop/Pictures/Saved%20Pictures/travel-hd.jpg"/>
+          </div>
+          <h3>Tours and Travel Website</h3>
+          
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">PHP</span>
+            <span class="tag">MySQL</span>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <a class="btn" href="#" onclick="alert('Demo link placeholder')">Live Demo</a>
+            <a class="btn" href="#" onclick="alert('Repo link placeholder')">Source</a>
+          </div>
+        </article>
+        <!-- Project Card 2 -->
+        <article class="card project" data-tags="node express api auth">
+          <div class="thumb">
+            <img alt="Rentel" src="file:///C:/Users/retheesh%20KD/OneDrive/Desktop/Pictures/Saved%20Pictures/0jCZ7x.jpg"/>
+          </div>
+          <h3>Bike Rentel</h3>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <a class="btn" href="#" onclick="alert('Demo link placeholder')">Live Demo</a>
+            <a class="btn" href="#" onclick="alert('Repo link placeholder')">Source</a>
+          </div>
+        </article>
+        <!-- Project Card 3 -->
+        <article class="card project" data-tags="landing page css animation">
+          <div class="thumb">
+            <img alt="Weather Report" src="file:///C:/Users/retheesh%20KD/OneDrive/Desktop/Pictures/Saved%20Pictures/hdr_tes.jpg"/>
+          </div>
+          <h3>Weather Report</h3>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <a class="btn" href="#" onclick="alert('Demo link placeholder')">Live Demo</a>
+            <a class="btn" href="#" onclick="alert('Repo link placeholder')">Source</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+
+    <!-- Ideathon Presentation -->
+    <section id="projects" class="sr">
+      <div class="row" style="align-items:center; justify-content:space-between;">
+        <h2 class="section-title" style="margin:0"> Project Presentation</h2>
+        
+      </div>
+      <div class="grid projects" id="projectGrid">
+        <!-- Project Card 1 -->
+        <article class="card project" data-tags="react dashboard charts">
+          <div class="thumb">
+            <img alt="CAR IGNITION SYSTEM" src="file:///C:/Users/retheesh%20KD/OneDrive/Desktop/Pictures/Saved%20Pictures/SSI-flex-device.avif"/>
+          </div>
+          <h3>BREATHALYZER LINKS TO CAR IGNITION SYSTEM</h3>
+          
+          <p>A Breathalyzer-links Ignitioninter lock preventsa car from starting if the driver’s alcohol limits to predict.</p>
+          
+        </article>
+        <!-- Project Card 2 -->
+        <article class="card project" data-tags="node express api auth">
+          <div class="thumb">
+            <img alt="EV CHARGING BEHAVIOUR" src="file:///C:/Users/retheesh%20KD/OneDrive/Desktop/Pictures/Saved%20Pictures/iStock-1564615208-640x427.jpg"/>
+          </div>
+          <h3>LSTM BASED PREDICTION OF EV CHARGING BEHAVIOUR</h3>
+          <p>To predict thechargingbehaviourusingaLSTM based deep learning algorithm.</p>
+          
+        </article>
+       
+      </div>
+    </section>
+
+<!-- Experience -->
+    <section id="experience" class="sr">
+      <h2 class="section-title">Area of Intrest</h2>
+      <div class="card timeline">
+        <div class="t-item">
+          <h3>Video Editing  </h3>
+          
+        <div class="t-item">
+          <h3>UI/UX Design</h3>
+
+          <div class="t-item">
+          <h3>Poster Design</h3>
+          
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Contact -->
+    <section id="contact" class="sr">
+  <h2 class="section-title">Contact</h2>
+  <div class="grid contact-grid">
+    
+    <p id="formStatus" class="hidden" aria-live="polite" style="margin-top:10px;"></p>
+    
+    <div class="card">
+      <h3>Let's work together</h3>
+      <p>I'm open to full-time roles, freelance gigs, and collaborations. Prefer messages via email, phone, or LinkedIn.</p>
+      <div class="row" style="margin-top:8px">
+        <a class="btn" href="mailto:kdretheesh0@gmail.com">📧 kdretheesh0@gmail.com</a>
+       
+        <a class="btn" href="https://www.linkedin.com/in/retheesh-kd-601a13305/" onclick="alert('LinkedIn')">💼 LinkedIn</a>
+        <a class="btn" href="https://github.com/RtheeshKD" onclick="alert('GitHub link')">🌐 GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  
+
+  <script>
+    // Smooth reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('revealed');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+
+    // Search filter for projects
+    const search = document.getElementById('search');
+    const grid = document.getElementById('projectGrid');
+
+    if (search) {
+      search.addEventListener('input', () => {
+        const q = search.value.toLowerCase().trim();
+        grid.querySelectorAll('.project').forEach(card => {
+          const text = (card.innerText + ' ' + (card.dataset.tags || '')).toLowerCase();
+          card.style.display = text.includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    // Simple contact form handler (no backend)
+    function sendMessage(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+      const status = document.getElementById('formStatus');
+      status.classList.remove('hidden');
+      status.textContent = `Thanks, ${data.name}! Your message has been prepared.`;
+      form.reset();
+    }
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
